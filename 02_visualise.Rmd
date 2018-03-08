@@ -30,6 +30,7 @@ Still a lot going on... let's break out each country!
 
 ```{r}
 ggplot( data = gapminder, aes(x = year, y = lifeExp, group = country))+
-  geom_line()
+  geom_line()+
+  facet_wrap(~continent)
 ```
 
