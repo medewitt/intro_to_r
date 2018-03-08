@@ -1,0 +1,16 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+# intro_to_r
+
+The goal of this repository is to introduce some topics to novice R users. Sometimes the most intimidating part of anything with a command line interface is starting. So let's start with a constructive was of getting started.
+
