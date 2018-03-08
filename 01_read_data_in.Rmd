@@ -1,0 +1,57 @@
+---
+title: "Getting Data into R"
+output: html_notebook
+---
+
+# Getting Data into R
+
+The first step in any analysis with R is typically gettign the data into R. This can also feel like the most challenging part. There are many different ways to get data into R so let's step through several of them.
+
+## Reading in CSV Files
+Comma Delimited Files are great. They are stable and pack a ton of data for little space. They are also common outputs of extracts.
+
+```{r}
+df_csv <- read_csv("data/gapminder.csv")
+
+```
+
+## Excel!!!
+
+```{r}
+df_excel <- read_excel("data/gapminder.xlsx")
+```
+
+
+## SPSS Files
+
+```{r}
+df_spss <- read_spss("data/gapminder.sav")
+```
+
+
+## SAS Files
+
+```{r}
+df_sas <- read_sas("data/gapminder.sas7bdat")
+```
+
+
+## Are they all Equivalent? 
+We want to ensure that our data is invariant based on the file formatting system. This is important to ensure that if we share files of different extensions that we all get the same data.
+
+So let's see if there are any differences!
+
+I'm going to use the `head` feature to just return the first six records. This is a nice way of not printing out just a few records to make sure everything worked as expected.
+
+```{r}
+head(df_sas == df_excel)
+```
+
+Looks good so far!
+
+LEt's just give a simple name to our data set and move on
+
+```{r}
+gapminder <- df_csv
+```
+

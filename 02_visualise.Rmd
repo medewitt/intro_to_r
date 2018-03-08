@@ -1,0 +1,35 @@
+---
+title: "Visualise"
+output: html_notebook
+---
+
+## Let's Chart!
+
+The first analytic part of an analysis workflow is starting to visualise your data. This can be done with `ggplot2` which is one of the most powerful visualisation tools around (IMHO).
+
+Let's do it with our gapminder dataset.
+
+```{r}
+ggplot( data = gapminder, aes(x = year, y = lifeExp))+
+  geom_line()
+```
+
+That really doesn't tell me anything...all of the countries are grouped together.
+
+How could Improve the visualisation?
+
+Let's group by countries!!
+
+```{r}
+ggplot( data = gapminder, aes(x = year, y = lifeExp, group = country))+
+  geom_line()
+```
+
+
+Still a lot going on... let's break out each country!
+
+```{r}
+ggplot( data = gapminder, aes(x = year, y = lifeExp, group = country))+
+  geom_line()
+```
+
