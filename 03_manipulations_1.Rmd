@@ -1,0 +1,79 @@
+---
+title: "Modify and Summarise"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+```
+
+# Manipulate, Modify, Summarise
+
+When it comes to data analysis we will often need to manipulate our data to highlight our interest. `dplyr` provides some amazing tools for doing this manipulation. Let's run through a few examples
+
+## Back with our Gapminder
+
+Say I'm a researcher that is only interested in Africa. I'm not really interested in look at any other continents. I would like to make a reduced data set to just see Africa.
+
+```{r}
+gapminder %>% 
+  filter(continent == "Africa")
+```
+
+A couple of moves are occuring here. The first of which is use of the pipe ` %>% ` . This is a special operator that allows you to chain commands together. However, do not feel compelled to use it right now. The equivalent code of the above would be:
+
+```{r}
+filter(gapminder, continent == "Africa")
+```
+
+Perhap I'm only interested in data before 1977. I can filter on that too!
+
+```{r}
+gapminder %>% 
+  filter(continent == "Africa", year <= 1977)
+```
+
+Ok, great! I can now assign this to a new object in R that just has these data.
+
+```{r}
+df_africa <- gapminder %>% 
+  filter(continent == "Africa", year <= 1977)
+```
+
+## Adding new columns
+
+Say I want to add a new metric. Life Expectancy divided by the Per Capita GDP. This can be accomplished with the `mutate` function.
+
+```{r}
+df_africa %>% 
+  mutate(life_exp_gpd = gdpPercap/ lifeExp)
+```
+
+Let's save it now!
+
+```{r}
+df_africa_2 <-df_africa %>% 
+  mutate(life_exp_gpd = gdpPercap/ lifeExp)
+```
+
+
+## Summarise it
+
+With all of this great work, we now want to see what the average is per country within Africa for our new metric. We can do this summary first by `group_by` which will ensure that we get a summary value by the grouping variable. We will then supply a `summarise` argument to give us our summary value.
+
+```{r}
+df_africa_2 %>% 
+  group_by(country) %>% 
+  summarise(mean_life_exp_gpd = mean(life_exp_gpd))
+```
+
+And I'm really only interested in the bottom ten countries.  So let's use another function `top_n` to filter four us. We can also supply the `arrange` that will sort by our specification (default is ascending).
+
+```{r}
+df_africa_2 %>% 
+  group_by(country) %>% 
+  summarise(mean_life_exp_gpd = mean(life_exp_gpd)) %>% 
+  top_n(-10, wt = mean_life_exp_gpd) %>% 
+  arrange(mean_life_exp_gpd)
+```
+
