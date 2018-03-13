@@ -2,12 +2,38 @@
 title: "Visualise"
 output: html_notebook
 ---
+```{r}
+options(scipen = 9999)
+```
 
 ## Let's Chart!
 
 The first analytic part of an analysis workflow is starting to visualise your data. This can be done with `ggplot2` which is one of the most powerful visualisation tools around (IMHO).
 
 Let's do it with our gapminder dataset.
+
+##Line Charts
+
+So let's plot...
+
+In ggplot there is a pattern
+
+* `ggplot` call to start the plot
+* specification of the `data`
+* Aesthetics you wish to plot marked by `aes`
+* and the `geom` you wish to plot
+
+So the form is always\
+
+```{r eval=FALSE}
+
+ggplot(data = data, aes( x = x, y = y))+
+  geom_point()
+
+```
+
+
+Its a little easier when we go through examples. Let's plot life expectancy over time.
 
 ```{r}
 ggplot( data = gapminder, aes(x = year, y = lifeExp))+
@@ -18,6 +44,10 @@ That really doesn't tell me anything...all of the countries are grouped together
 
 How could Improve the visualisation?
 
+## Grouping
+
+Grouping variables is an additional parameter to pass to the `aes` argument. Here we can specify how to break up our lines (or any `geom`). 
+
 Let's group by countries!!
 
 ```{r}
@@ -26,11 +56,63 @@ ggplot( data = gapminder, aes(x = year, y = lifeExp, group = country))+
 ```
 
 
-Still a lot going on... let's break out each country!
+Still a lot going on... let's break out each continent!
+
+##Facets
+
+Facet plots are an additional argument to pass to ggplot. It allows us to break up our graphing space to display individual graphs for whatever variable we would like to facet by.
+
+We layer additional items to `ggplot` with `+`s. 
 
 ```{r}
 ggplot( data = gapminder, aes(x = year, y = lifeExp, group = country))+
   geom_line()+
   facet_wrap(~continent)
+```
+
+This is interesting, but let's try a different depiction through a different geom
+
+Starting with our original `ggplot` argument
+
+```{r}
+ggplot( data = gapminder, aes(x = gdpPercap, y = lifeExp, group = country, size= sqrt(pop/pi)))+
+  geom_point()
+
+```
+
+That scale doesn't really help reveal everything we want to see. Too much data is clumped near zero. We help solve this through moving to a log based scale.
+
+```{r}
+ggplot( data = gapminder, aes(x = gdpPercap, y = lifeExp, group = country, size= sqrt(pop/pi)))+
+  geom_point()+
+  scale_x_log10()
+
+```
+
+And we can even make it more fancy with using our continent grouping to color the points
+
+```{r}
+ggplot( data = gapminder, aes(x = gdpPercap, y = lifeExp, group = country, size= sqrt(pop/pi), color = continent))+
+  geom_point()+
+  scale_x_log10()
+```
+
+Now let's give it a title and save it!
+
+```{r}
+ggplot( data = gapminder, 
+        aes(x = gdpPercap, 
+            y = lifeExp, 
+            group = country, 
+            size= sqrt(pop/pi), 
+            color = continent))+
+  geom_point()+
+  scale_x_log10()+
+  labs(
+    title = "Bubble Chart of Life Expectancy and Per Capita GDP",
+    subtitle = NULL,
+    caption = "Data from gapminder dataset"
+  )+
+  ggsave("bubble_chart.pdf")
 ```
 
