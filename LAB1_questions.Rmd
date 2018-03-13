@@ -1,0 +1,60 @@
+---
+title: "LAB1"
+output: html_notebook
+---
+
+Now it's your turn. We will be using the `mpg` data set that is pre-loaded in R. You can explore it with
+
+```{r}
+library(tidyverse)
+```
+
+
+```{r}
+mpg
+```
+
+## Question 1
+I would like a graph that plots `cty` milleage (x axis) versus `hwy` mileage on with a line. Hint: use `geom_line()`
+
+```{r}
+
+```
+
+##Question 1A
+
+Now color the the dots by the discplacement. You will need to supply a color argument in the `aes`, and use `as.factor(cyl)`.
+
+```{r}
+
+```
+
+
+## Question 2
+Now I would like a histogram that of the `hwy` variable. Hint use `geom_histogram`
+
+```{r}
+
+```
+
+## Question 3
+Now I would like to see a boxplot of the different drv trains versus the engine displacement. Hint use `geom_boxplot`
+
+```{r}
+
+```
+
+# Question 4
+Make a new column that is the hwy mileage (hwy) divided by the engine discplacement (displ). Call this new value `miles_per_l`. Save the new data set as `mpg_2`
+
+```{r}
+
+```
+
+# Question 5
+Now group by the car `cyl` type and return a table with the averahe `miles_per_l`.
+
+```{r}
+
+```
+
