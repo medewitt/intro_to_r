@@ -17,7 +17,7 @@ Getting R
     -   If you have a windows system go [here](https://gitforwindows.org/)
     -   If you have a MAC system you should already have git. If not then go [here](https://sourceforge.net/projects/git-osx-installer/files/)
 
-After you have installed them both (in that order) open up R Studio! This will be your IDE or integrated development environment. RStudio has done an amazing job with all the features and has really made R into an enterprise ready solution.
+After you have installed all of them (in that order) open up R Studio! This will be your IDE or integrated development environment. RStudio has done an amazing job with all the features and has really made R into an enterprise ready solution.
 
 Getting the Example Documents
 -----------------------------
