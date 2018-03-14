@@ -20,6 +20,11 @@ The goal of this repository is to introduce some topics to novice R users. Somet
 
 * Next download RStudio for your operating system. This can be done at [https://www.rstudio.com/products/rstudio/download/](https://www.rstudio.com/products/rstudio/download/). You want the open source RStudio Desktop. It's free.
 
+* Next install Git. Git is a version control system that also doubles down as a great way to share information and files (especially code). Atlassian has put together a nice "how-to" here [https://www.atlassian.com/git/tutorials/install-git](https://www.atlassian.com/git/tutorials/install-git)
+
+    * If you have a windows system go [here](https://gitforwindows.org/)
+    * If you have a MAC system you should already have git. If not then go [here](https://sourceforge.net/projects/git-osx-installer/files/)
+
 After you have installed them both (in that order) open up R Studio! This will be your IDE or integrated development environment. RStudio has done an amazing job with all the features and has really made R into an enterprise ready solution.
 
 ## Getting the Example Documents
